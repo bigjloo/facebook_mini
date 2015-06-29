@@ -1,0 +1,8 @@
+<div class= 'container'>
+  <h2>Feeds for '<%= @tag.title %>'</h2>
+  <% @all_feed.each do |feed| %>
+  <%= feed.content %> <br><br>
+  <%= feed.created_at %> <br><br>
+  <% end %>
+  <a href= "/"><b>Main</b></a>
+</div>

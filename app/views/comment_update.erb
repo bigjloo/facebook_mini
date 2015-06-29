@@ -1,0 +1,11 @@
+<div class= 'container'>
+  <form action="/comment/<%= session[:user_id] %>" method= "post">
+    <input type= "hidden" name= "_method" value= "patch">
+    Comment Update<br>
+    <textarea name= "comment[comment_content]" rows= 2 cols= 40>
+      <%= @comment.comment_content %>
+    </textarea><br>
+    <input type= "submit" value= "Update COMMENT!">
+  </form>
+
+</div>

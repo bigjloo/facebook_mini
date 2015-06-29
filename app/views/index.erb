@@ -1,0 +1,56 @@
+<div class="container">
+  <h1>Welcome to Micro-Facebook!</h1>
+  <% unless logged_in? %>
+    <form action= "/user/login" method= "get">
+      <input type= "submit" value= "USER LOG IN" >
+    </form>
+    <form action= "/user/new" method= "get">
+      <input type= "submit" value= "SIGN UP" >
+    </form>
+  <% else %>
+    <a href= "/user/<%= session[:user_id]%>">user page </a>
+    <form action= "/profile/<%= session[:user_id] %>/edit" method= "get">
+      <input type= "submit" value= "UPDATE PROFILE" >
+    </form>
+    <form action= "/session/log_out" method= "get">
+      <input type= "submit" value= "Log out">
+    </form>
+  <% end %>
+  <section>
+    <% @all_feeds.each do |feed| %>
+      by: <b><%= feed.user.profile.fullname %></b><br>
+      <%= feed.content %><br>
+      <%= feed.created_at %><br><br>
+      LIKES: <%= feed.likes.count %>
+      <form action= "/like/<%= feed.id %>/new" method= "post">
+        <input type= "submit" value= "LIKE!">
+      </form
+      Comments : <br>
+      <% feed.comments.each do |comment| %>
+        <%= comment.comment_content %>
+        <b>by : <%= comment.user.profile.fullname %></b>
+        <% if comment.user.id == session[:user_id] %>
+          <form action= "/comment/<%= session[:user_id] %>/edit" method= "get">
+          <input type= "submit" value= "UPDATE COMMENT" >
+        </form>
+        <form action= "/comment/<%= session[:user_id] %>" method= "post">
+          <input name="_method" type="hidden" value="delete">
+          <input type= "submit" value= "DELETE comment"><br><br>
+        <% end %>
+        <br><br>
+      <% end %>
+      <% feed.tags.each do |tag| %>
+          Tag: <a href= "/tag/<%= tag.title %>"><%= tag.title %></a><br>
+        <%end%>
+      <% if logged_in? %>
+        <form action= "/comment/<%= feed.id %>" method= "post">
+          <textarea name= "content" rows= 2 cols= 40></textarea><br>
+          <input type= "submit" value= "Comment"><br>
+        </form>
+
+          -------------------------------------<br>
+
+      <% end %>
+    <% end %>
+  </section>
+</div>

@@ -1,0 +1,10 @@
+<div class= 'container'>
+  <form action="/profile/<%= @user_profile.id %>" method= "post">
+    <input type= "hidden" name= "_method" value= "patch">
+    Full Name<br><br>
+    <input type= "text" name="profile[fullname]" value= "<%= @user_profile.fullname %>"><br><br>
+    Date of Birth<br><br>
+    <input type= "text" name= "profile[date_of_birth]" value= "<%= @user_profile.date_of_birth %>"><br><br>
+    <input type= "submit" value= "Update Profile!"><br>
+  </form>
+</div>

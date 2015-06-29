@@ -1,0 +1,57 @@
+Facebook
+
+#User Registration
+Users can sign up
+Users can login
+
+#Users Profile
+Users can view their own profile
+Users can edit their own profile
+Users can delete their own profile
+
+#User Feed
+Users can CRUD status
+Users can view all status
+
+Users can create tags for their status
+Users can view all status of one tag
+
+#Comments
+Users can CRUD comment on all status
+
+#Likes
+Users can like status
+Users can view total number of likes
+Users cannot like status more than once
+
+models:
+user has_one profile
+profile belongs_to user
+user has_many feeds
+feed belongs_to user
+feed has_many tags
+tag has_many feeds
+feed has_many comments
+comment belongs_to feed
+comment belongs_to user
+user has_many comments
+
+like = count. only log in can like and cannot like twice by same user
+
+index
+- All feed
+- log in + signup links
+
+log in
+- form for log in
+
+sign up
+- form for sign up
+
+user page
+- all user feed, new feed, log out
+
+CRUD feed & comment
+
+
+

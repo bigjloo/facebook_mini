@@ -1,0 +1,48 @@
+<div class= 'container'>
+  <a href= "/">Main</a>
+  <h2> USER PERSONAL PAGE</h2>
+  <h3>Welcome
+    <% if !@user.profile.nil? %>
+      <%= @user.profile.fullname %>
+    <% else%>
+      User
+    <% end %>
+  </h3>
+  <form action= "/profile" method= "get">
+    <input type= "submit" value= "Profile">
+  </form>
+  <form action= "/profile/<%= session[:user_id] %>/edit" method= "get">
+    <input type= "submit" value= "UPDATE PROFILE" >
+  </form>
+  <form action= "/profile/<%= session[:user_id] %>" method= "post">
+    <input name="_method" type="hidden" value="delete">
+    <input type= "submit" value= "Delete Profile">
+  </form>
+  <h2><a href= "/feed/new">new post</a></h2>
+  </form>
+    <% @user.feeds.reverse.each do |feed| %>
+      <p>
+        <%= feed.content %></a><br><br>
+        <%= feed.created_at %><br><br>
+        LIKES: <%= feed.likes.count %>
+        <span style= "color:blue">Tags:</span>
+        <% feed.tags.each do |tag| %>
+          <a href= "/tag/<%= tag.title %>"><%= tag.title %></a><br>
+        <%end%>
+        <% feed.comments.each do |comment| %>
+          <%= comment.comment_content %><br>
+          by: <%= comment.user.profile.fullname %><br>
+        <% end %>
+        <form action= "/feed/<%= session[:user_id] %>/edit" method= "get">
+          <input type= "submit" value= "UPDATE POST" >
+        </form>
+        <form action= "/feed/<%= session[:user_id] %>" method= "post">
+          <input name="_method" type="hidden" value="delete">
+          <input type= "submit" value= "DELETE Post">
+        </form>
+      </p>
+    <% end %>
+  <form action= "/session/log_out" method= "get">
+    <input type= "submit" value= "Log out">
+  </form>
+</div>

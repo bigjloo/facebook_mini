@@ -1,0 +1,12 @@
+<div class= 'container'>
+  Full Name: <%= @user_profile.fullname %><br><br>
+  Date of Birth: <%= @user_profile.date_of_birth %><br><br>
+  <a href= "/user/<%= session[:user_id]%>">user page </a>
+  <form action= "/profile/<%= session[:user_id] %>/edit" method= "get">
+    <input type= "submit" value= "UPDATE PROFILE" >
+  </form>
+  <form action= "/profile/<%= session[:user_id] %>" method= "post">
+    <input name="_method" type="hidden" value="delete">
+    <input type= "submit" value= "Delete Profile">
+  </form>
+</div>

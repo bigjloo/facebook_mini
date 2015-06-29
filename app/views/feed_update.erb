@@ -1,0 +1,11 @@
+<div class= 'container'>
+  <form action="/feed/<%= session[:user_id] %>" method= "post">
+    <input type= "hidden" name= "_method" value= "patch">
+    Status Update<br>
+    <textarea name= "feed[content]" rows= 4 cols= 40>
+      <%= @feed.content %>
+    </textarea><br>
+    <input type= "submit" value= "Update Status!">
+  </form>
+
+</div>
